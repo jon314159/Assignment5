@@ -9,6 +9,7 @@ from app.calculator import Calculator
 from app.exceptions import OperationError, ValidationError
 from app.history import AutoSaveObserver, LoggingObserver
 from app.operations import OperationFactory
+from unittest.mock import patch
 
 
 def calculator_repl():

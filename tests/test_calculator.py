@@ -178,3 +178,16 @@ def test_calculator_repl_help(mock_print, mock_input):
 def test_calculator_repl_addition(mock_print, mock_input):
     calculator_repl()
     mock_print.assert_any_call("\nResult: 5")
+
+@patch('app.calculator.pd.DataFrame.to_csv', side_effect=Exception("disk error"))
+@patch('app.calculator.logging.error')
+def test_save_history_raises_operation_error(mock_log_error, mock_to_csv, calculator):
+    # Add one calculation to make history non-empty
+    operation = OperationFactory.create_operation('add')
+    calculator.set_operation(operation)
+    calculator.perform_operation(1, 2)
+
+    with pytest.raises(OperationError, match="Failed to save history: disk error"):
+        calculator.save_history()
+
+    mock_log_error.assert_called_once_with("Failed to save history: disk error")
