@@ -96,9 +96,6 @@ def test_undo_command_success(mock_save, mock_undo, mock_print, mock_input):
     mock_undo.assert_called_once()
     mock_print.assert_any_call("Operation undone")
 
-import pytest
-from unittest.mock import patch
-from app.calculator import Calculator
 
 @patch('builtins.input', side_effect=['redo', 'exit'])
 @patch('builtins.print')
@@ -110,9 +107,6 @@ def test_redo_command_success(mock_save, mock_redo, mock_print, mock_input):
     mock_redo.assert_called_once()
     mock_print.assert_any_call("Operation redone")
 
-import pytest
-from unittest.mock import patch
-from app.calculator import Calculator
 
 @patch('builtins.input', side_effect=['redo', 'exit'])
 @patch('builtins.print')
@@ -123,11 +117,6 @@ def test_redo_command_nothing_to_redo(mock_save, mock_redo, mock_print, mock_inp
     calculator_repl()
     mock_redo.assert_called_once()
     mock_print.assert_any_call("Nothing to redo")
-
-
-import pytest
-from unittest.mock import patch
-from app.calculator import Calculator
 
 @patch('builtins.input', side_effect=['undo', 'exit'])
 @patch('builtins.print')
