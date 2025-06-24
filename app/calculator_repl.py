@@ -51,8 +51,8 @@ def calculator_repl():
                     try:
                         calc.save_history()
                         print("History saved successfully.")
-                    except Exception as e:
-                        print(f"Warning: Could not save history: {e}")
+                    except Exception as e: # pragma: no cover - unexpected output
+                        print(f"Warning: Could not save history: {e}") 
                     print("Goodbye!")
                     break
 

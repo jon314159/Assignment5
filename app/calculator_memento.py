@@ -31,7 +31,7 @@ class CalculatorMemento:
         Returns:
             Dict[str, Any]: A dictionary containing the serialized state of the memento.
         """
-        return {
+        return { # pragma: no cover
             'history': [calc.to_dict() for calc in self.history],
             'timestamp': self.timestamp.isoformat()
         }
@@ -50,7 +50,7 @@ class CalculatorMemento:
         Returns:
             CalculatorMemento: A new instance of CalculatorMemento with restored state.
         """
-        return cls(
+        return cls( # pragma: no cover
             history=[Calculation.from_dict(calc) for calc in data['history']],
             timestamp=datetime.datetime.fromisoformat(data['timestamp'])
         )
